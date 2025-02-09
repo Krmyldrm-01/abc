@@ -1,44 +1,47 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const videoCard = document.querySelector(".video-card");
-    const glare = videoCard.querySelector(".glare");
+    const videoCards = document.querySelectorAll(".video-card"); // Select all video cards
 
-    const calculateAngle = (e, item, parent) => {
-        let dropShadowColor = "rgba(0, 0, 0, 0.3)";
+    videoCards.forEach(videoCard => {
+        const glare = videoCard.querySelector(".glare");
 
-        parent.classList.add("animated");
+        const calculateAngle = (e, item, parent) => {
+            let dropShadowColor = "rgba(0, 0, 0, 0.3)";
 
-        let x = Math.abs(item.getBoundingClientRect().x - e.clientX);
-        let y = Math.abs(item.getBoundingClientRect().y - e.clientY);
+            parent.classList.add("animated");
 
-        let halfWidth = item.getBoundingClientRect().width / 2;
-        let halfHeight = item.getBoundingClientRect().height / 2;
+            let x = Math.abs(item.getBoundingClientRect().x - e.clientX);
+            let y = Math.abs(item.getBoundingClientRect().y - e.clientY);
 
-        let calcAngleX = (x - halfWidth) / 6;
-        let calcAngleY = (y - halfHeight) / 14;
+            let halfWidth = item.getBoundingClientRect().width / 2;
+            let halfHeight = item.getBoundingClientRect().height / 2;
 
-        let gX = (1 - (x / (halfWidth * 2))) * 100;
-        let gY = (1 - (y / (halfHeight * 2))) * 100;
+            let calcAngleX = (x - halfWidth) / 6;
+            let calcAngleY = (y - halfHeight) / 14;
 
-        glare.style.background = `radial-gradient(circle at ${gX}% ${gY}%, rgba(255, 255, 255, 0.3), transparent)`;
+            let gX = (1 - (x / (halfWidth * 2))) * 100;
+            let gY = (1 - (y / (halfHeight * 2))) * 100;
 
-        parent.style.perspective = `${halfWidth * 6}px`;
-        item.style.perspective = `${halfWidth * 6}px`;
+            glare.style.background = `radial-gradient(circle at ${gX}% ${gY}%, rgba(255, 255, 255, 0.3), transparent)`;
 
-        item.style.transform = `rotateY(${calcAngleX}deg) rotateX(${-calcAngleY}deg) scale(1.04)`;
+            parent.style.perspective = `${halfWidth * 6}px`;
+            item.style.perspective = `${halfWidth * 6}px`;
 
-        let calcShadowX = (x - halfWidth) / 3;
-        let calcShadowY = (y - halfHeight) / 6;
+            item.style.transform = `rotateY(${calcAngleX}deg) rotateX(${-calcAngleY}deg) scale(1.04)`;
 
-        item.style.filter = `drop-shadow(${-calcShadowX}px ${-calcShadowY}px 15px ${dropShadowColor})`;
-    };
+            let calcShadowX = (x - halfWidth) / 3;
+            let calcShadowY = (y - halfHeight) / 6;
 
-    videoCard.addEventListener("mousemove", (e) => {
-        calculateAngle(e, videoCard, videoCard.parentElement);
-    });
+            item.style.filter = `drop-shadow(${-calcShadowX}px ${-calcShadowY}px 15px ${dropShadowColor})`;
+        };
 
-    videoCard.addEventListener("mouseleave", () => {
-        videoCard.classList.remove("animated");
-        videoCard.style.transform = "rotateY(0deg) rotateX(0deg) scale(1)";
-        videoCard.style.filter = "drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3))";
+        videoCard.addEventListener("mousemove", (e) => {
+            calculateAngle(e, videoCard, videoCard.parentElement);
+        });
+
+        videoCard.addEventListener("mouseleave", () => {
+            videoCard.classList.remove("animated");
+            videoCard.style.transform = "rotateY(0deg) rotateX(0deg) scale(1)";
+            videoCard.style.filter = "drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3))";
+        });
     });
 });
