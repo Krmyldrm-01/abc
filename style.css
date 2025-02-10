@@ -4,18 +4,111 @@
     box-sizing: border-box;
 }
 
+:root {
+    --font-heading: 'Playfair Display', serif; /* For headings */
+    --font-body: 'Quicksand', sans-serif; /* For body text */
+    --color-bg1: #FFE6E6;  /* Soft Blush */
+    --color-bg2: #FFC2C2;  /* Light Pink */
+    --color1: #FFB3B3;     /* Soft Pink */
+    --color2: #FF9999;     /* Warm Pink */
+    --color3: #FF6666;     /* Romantic Red */
+    --color4: #FF4D4D;     /* Rich Red */
+    --color5: #333333;     /* Dark Gray for text */
+    --color-interactive: #FF8080; /* Interactive Pink */
+}
+
+/* Body and Background */
+body {
+    background: radial-gradient(circle at center, 
+        var(--color-bg1) 20%, 
+        var(--color-bg2) 40%, 
+        var(--color1) 60%, 
+        var(--color2) 75%, 
+        var(--color3) 90%, 
+        var(--color4) 100%);
+    background-attachment: fixed;
+    color: var(--color5);
+    font-family: 'Georgia', serif; /* Romantic serif font */
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700; /* Bold weight for headings */
+    color: var(--color5);
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+/* Heart-shaped background */
+.heart-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place it behind all other content */
+    animation: pulse 2s infinite ease-in-out; /* Beating animation */
+    opacity: 0.8; /* Soft transparency */
+    filter: blur(30px); /* Blurry effect */
+}
+
+.heart-background svg {
+    width: 100%;
+    height: 100%;
+    fill: url(#heart-gradient); /* Apply gradient to the heart */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1); /* Slightly larger */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Ensure content is above the heart background */
 .body-wrapper {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Navigation Bar */
 .navbar-wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 20px;
-    border: 1px solid red;
     width: 100%;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Soft border */
+}
+
+.navlogo, .navlinks {
+    color: var(--color5);
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 /* Main Layout */
@@ -24,6 +117,7 @@
     width: 100%;
     justify-content: space-between;
     padding: 20px;
+    flex: 1; /* Allow main content to grow and push footer down */
 }
 
 /* Left and Right Aside */
@@ -34,13 +128,14 @@
     align-items: center;
 }
 
-.aside-left-wrapper{
+.aside-left-wrapper {
     padding: 10px;
 }
 
 .aside {
     width: 100%;
     text-align: center;
+    color: var(--color5);
 }
 
 /* Video Card */
@@ -50,15 +145,20 @@
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    transition: transform 0.1s ease-out, box-shadow 0.2s ease-out;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
     will-change: transform, box-shadow;
     perspective: 1000px;
     position: relative;
+}
+
+.video-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Glare Effect */
@@ -71,8 +171,12 @@
     border-radius: inherit;
     background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.3), transparent);
     opacity: 0;
-    transition: opacity 0.2s ease-out;
+    transition: opacity 0.3s ease-out;
     pointer-events: none;
+}
+
+.video-card:hover .glare {
+    opacity: 1;
 }
 
 .video-card video {
@@ -80,16 +184,85 @@
     border-radius: 15px;
 }
 
-.video-card:hover .glare {
-    opacity: 1;
-}
-
 /* Main Section */
 .main-section-wrapper {
+    font-style: var(--font-body);
     flex: 2;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
+}
+
+/* 3D Box */
+.3d-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.3d-box {
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.3d-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Question and Choice Wrapper */
+
+.choice-wrapper > div {
+    margin-top: 20px;
+}
+
+.question-wrapper,
+.choice-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.question-box,
+.choice-box {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.question-box:hover,
+.choice-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.click-box button,
+.choice-box button {
+    background: var(--color-interactive);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease-out, transform 0.3s ease-out;
+    color: var(--color5);
+    font-size: 1.9rem;
+}
+
+.click-box button:hover,
+.choice-box button:hover {
+    background: var(--color2);
+    transform: scale(1.05);
 }
 
 /* Footer */
@@ -98,5 +271,9 @@ footer {
     justify-content: center;
     padding: 20px;
     width: 100%;
-    border: 1px solid red;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Soft border */
+    margin-top: auto; /* Push footer to the bottom */
+    color: var(--color5);
 }
