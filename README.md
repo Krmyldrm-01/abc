@@ -16,7 +16,7 @@ Once deployed, access your live project at:
 ```
 https://loveoh.netlify.app/
 ```
-Replace `your-netlify-site` with your actual Netlify domain.
+Replace https://loveoh.netlify.app/ with your actual Netlify domain.
 
 ---
 
@@ -24,7 +24,7 @@ Replace `your-netlify-site` with your actual Netlify domain.
 ### **1️⃣ Local Setup**
 #### **Clone the repository:**
 ```bash
-git clone https://github.com/yourusername/Valentines-Day-Web-Project.git
+git clone https://github.com/2bTwist/Valentines-Day-Web-Project
 cd Valentines-Day-Web-Project
 ```
 
