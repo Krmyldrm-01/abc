@@ -10,11 +10,16 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <script src="index.js"></script>
     <title>LoveOh</title>
 </head>
 
 <body>
+
+    <audio id="background-music">
+        <source src="/assets/intro.mp3" type="audio/mpeg">
+        Your Browser does not supprt the audio element.
+    </audio>
+    
     <!-- Heart-shaped SVG as a background -->
     <div class="heart-background">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +80,8 @@
                 <aside>
                     <div class="aside-wrapper">
                         <div class="aside right">
-                            <button>Mute</button>
+                            <button id="mute-button"><i class="fa fa-volume-up"></i></button>
+                            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
                         </div>
                     </div>
                 </aside>
@@ -87,6 +93,9 @@
         </footer>
     </div>
     
+<!-- Scripts -->
+    <script src="intro.js" defer></script>
+    <script src="index.js"></script>
     <script src="card.js" defer></script>
 </body>
 </html>

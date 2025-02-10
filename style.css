@@ -249,20 +249,89 @@ h3 {
 
 .click-box button,
 .choice-box button {
-    background: var(--color-interactive);
     border: none;
     padding: 10px 20px;
     border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s ease-out, transform 0.3s ease-out;
+    transition: 0.3s ease-out, transform 0.3s ease-out;
     color: var(--color5);
     font-size: 1.9rem;
+}
+
+.choice-box > button {
+    margin: 5px;
+}
+
+.choice-box button:first-child {
+    background-color: #A7D397; /* Soft pastel green */
+    color: white;
+    border: none;
+    transition:  0.3s ease-in-out;
+}
+
+.choice-box button:last-child {
+    background-color: white;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+/* Hover effects */
+.choice-box button:first-child:hover {
+    background-color: #8BBF77; /* Slightly deeper green on hover */
+}
+
+.choice-box button:last-child:hover {
+    background-color: #f74f4f; /* Soft gray hover effect */
 }
 
 .click-box button:hover,
 .choice-box button:hover {
     background: var(--color2);
     transform: scale(1.05);
+}
+
+/* Style for the mute button */
+#mute-button {
+    background-color: var(--color5);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out, transform 0.3s ease-out;
+    font-size: 1rem;
+}
+
+#mute-button:hover {
+    background-color: var(--color5);
+    transform: scale(1.05);
+}
+
+#volume-slider {
+    width: 100%;
+    margin-top: 10px;
+    -webkit-appearance: none;
+    background: linear-gradient(to right, #A7D397, #8BBF77);
+    height: 5px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Style for the slider thumb */
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border: 2px solid #8BBF77;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+#volume-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
 }
 
 /* Footer */
@@ -276,4 +345,15 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.2); /* Soft border */
     margin-top: auto; /* Push footer to the bottom */
     color: var(--color5);
+}
+
+.hide{
+    display: none;
+}
+
+.partner-name {
+    font-family: 'Playfair Display', serif; /* Fancy font */
+    font-size: 3rem; /* Bigger text */
+    font-weight: bold;
+    color: var(--color3); /* Romantic red */
 }
