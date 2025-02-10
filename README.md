@@ -12,6 +12,9 @@ A fun, interactive web app with a **glassmorphism** aesthetic, designed to send 
 ✅ **Mobile-friendly & responsive design**  
 
 ## 🚀 Live Demo
+
+<img src='/assets/Walkthrough.gif' title='Video Walkthrough' width='500px' alt='Video Walkthrough' />
+
 Once deployed, access your live project at:
 ```
 https://loveoh.netlify.app/
