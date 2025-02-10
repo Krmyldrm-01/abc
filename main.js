@@ -51,10 +51,33 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 500); // Delay to allow smooth transition
     }
 
-
+    function createHearts() {
+        const heartContainer = document.createElement("div");
+        heartContainer.classList.add("heart-container");
+        document.body.appendChild(heartContainer);
+    
+        for (let i = 0; i < 30; i++) {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            
+            // Random positioning and animation speed
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            
+            heartContainer.appendChild(heart);
+        }
+    
+        // Remove hearts after animation ends
+        setTimeout(() => {
+            heartContainer.remove();
+        }, 5000);
+    }
+    
     yesButton.addEventListener("click", function () {
         questionText.innerHTML = `<span class="partner-name">${partnerName}</span><br><span class="love-text">I love you baby ❤️</span>`;
         choiceBox.style.display = "none"; // Hide choices
+
+        createHearts();
     });
 
       // Handle "No" button click
