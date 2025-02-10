@@ -25,11 +25,4 @@ document.addEventListener("DOMContentLoaded", function () {
         audio.muted = volumeSlider.value == 0; // Auto-mute if slider is at 0
         icon.className = audio.muted ? "fa fa-volume-off" : "fa fa-volume-up"; // Toggle icon
     });
-
-    // Ensure audio starts playing when the user interacts with the page
-    document.body.addEventListener("click", function () {
-        if (audio.paused) {
-            audio.play().catch(error => console.log('Playback failed:', error));
-        }
-    }, { once: true });
 });
