@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const video = videoCard.querySelector("video"); // Get video element
     const clickButton = document.querySelector(".click-box button");
     const choiceBox = document.querySelector(".choice-box");
+    const threedBox = document.querySelector(".threed-box");
     const questionText = document.querySelector(".question-box h1");
     const yesButton = document.querySelector(".choice-box button:first-child");
     const noButton = document.querySelector(".choice-box button:last-child");
@@ -76,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
     yesButton.addEventListener("click", function () {
         questionText.innerHTML = `<span class="partner-name">${partnerName}</span><br><span class="love-text">I love you baby ❤️</span>`;
         choiceBox.style.display = "none"; // Hide choices
+        threedBox.classList.remove("hide");
 
         createHearts();
     });
