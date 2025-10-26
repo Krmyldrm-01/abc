@@ -1,107 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Bir Sorum Var...</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fce4ec; /* Açık pembe arka plan */
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+        }
 
-    <link rel="icon" type="image" href="assets/favicon.ico">
+        /* Tüm aşamaları başlangıçta gizle */
+        .stage {
+            display: none;
+        }
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+        /* İlk aşamayı görünür yap */
+        #stage1 {
+            display: block;
+        }
 
-    <title>LoveOh</title>
-    <meta name="description" content="Create and send a personalized Valentine's Day card with beautiful animation. It's a lovely gift idea for couples or friends!" />
+        h1 {
+            color: #d81b60; /* Koyu pembe başlık */
+            font-size: 24px;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-yes {
+            background-color: #4caf50; /* Yeşil */
+            color: white;
+        }
+
+        .btn-no {
+            background-color: #f44336; /* Kırmızı */
+            color: white;
+            position: relative; /* Kaçma efekti için */
+        }
+
+        /* 3. Aşama (Final) Stilleri */
+        #stage3 img {
+            max-width: 100%;
+            height: auto;
+            max-height: 50vh; /* Resmin çok büyümesini engelle */
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        #stage3 a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: #c2185b; /* Şarkı linki için pembe */
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        #stage3 a:hover {
+            background-color: #ad1457;
+        }
+    </style>
 </head>
-
 <body>
 
-    <audio id="background-music">
-        <source src="/assets/intro.mp3" type="audio/mpeg">
-        Your Browser does not supprt the audio element.
-    </audio>
-    
-    <!-- Heart-shaped SVG as a background -->
-    <div class="heart-background">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <radialGradient id="heart-gradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                    <stop offset="0%" stop-color="var(--color1)" />
-                    <stop offset="50%" stop-color="var(--color2)" />
-                    <stop offset="100%" stop-color="var(--color3)" />
-                </radialGradient>
-            </defs>
-            <path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z" fill="url(#heart-gradient)" />
-        </svg>
-    </div>
+    <div class="container">
 
-    <div class="body-wrapper background">
-        <nav>
-            <div class="navbar-wrapper">
-                <div class="navlogo"><h2>LoveOh</h2></div>
-                <div class="navlinks"><a href=".">Refresh</a></div>
-            </div>
-        </nav>
-
-        <div class="main-wrapper">
-            <div class="aside-wrapper">
-                <aside>
-                    <div class="aside-left-wrapper">
-                        <div class="aside left hide">
-                            <div class="video-card">
-                                <div class="glare"></div>
-                                <video src="/assets/funny video.mp4"></video>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-            </div>
-
-            <div class="main-section-wrapper">
-                <div class="threed-wrapper">
-                    <div class="threed-box hide">
-                        <img src="assets/bears.gif" alt="Cute bears kissing">
-                    </div>
-                </div>  
-                <div class="question-wrapper">
-                    <div class="question-box">
-                        <h1>I Have a Question to Ask!!!</h1>
-                    </div>
-                </div>  
-                <div class="choice-wrapper">
-                    <div class="click-box">
-                        <button>Click to find out</button>
-                    </div>
-                    <div class="choice-box hide">
-                        <button>Yes ❤️</button>
-                        <button>No ❌</button>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="aside-wrapper">
-                <aside>
-                    <div class="aside-wrapper">
-                        <div class="aside right">
-                            <button id="mute-button"><i class="fa fa-volume-up"></i></button>
-                            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
-                        </div>
-                    </div>
-                </aside>
+        <div class="stage" id="stage1">
+            <h1>😔 Özür Dilerim 😔</h1>
+            <p>Bu özel günümüzü unuttuğum için özür dilerim...<br>Beni affedebilir misin?</p>
+            <div class="buttons">
+                <button class="btn btn-yes" id="yesBtn1">Evet</button>
+                <button class="btn btn-no" id="noBtn1">Hayır</button>
             </div>
         </div>
 
-        <footer>
-            <a href="https://github.com/2bTwist/Valentines-Day-Web-Project" target="_blank"><p>Designed by E <i style="font-size:20px" class="fa">&#xf09b;</i></p></a>
-        </footer>
+        <div class="stage" id="stage2">
+            <h1>💖 Bir Soru Daha... 💖</h1>
+            <p>Bu unutkan adamla birlikte olmak istiyor musun?</p>
+            <div class="buttons">
+                <button class="btn btn-yes" id="yesBtn2">Evet!</button>
+                <button class="btn btn-no" id="noBtn2">Hayır</button>
+            </div>
+        </div>
+
+        <div class="stage" id="stage3">
+            <h1>Seni Çok Seviyorum!</h1>
+            <img src="sen.jpg" alt="Bizim Fotoğrafımız">
+            <br>
+            <a href="https://www.youtube.com/watch?v=fmGFdWc0vzY" target="_blank">🎶 Dilerim Ki... 🎶</a>
+        </div>
+
     </div>
-    
-<!-- Scripts -->
-    <script src="intro.js" defer></script>
-    <script src="index.js"></script>
-    <script src="card.js" defer></script>
-    <script src="main.js" ></script>
+
+    <script>
+        // --- AŞAMA 1 KONTROLLERİ ---
+
+        const yesBtn1 = document.getElementById('yesBtn1');
+        const noBtn1 = document.getElementById('noBtn1');
+        let yesBtn1Scale = 1; // Evet butonunun mevcut ölçeği
+        let noBtn1ClickCount = 0; // Hayır butonuna kaç kez tıklandı
+
+        // Aşama 1'in "Hayır" butonuna basınca çıkan yazılar
+        const phrases1 = [
+            "Hayır", "Emin misin?", "Gerçekten mi?", "Lütfen tekrar düşün!",
+            "Son şansın!", "Bak kalbimi kırıyorsun :(", "Affettim de artık lütfen",
+            "Ama böyle kaçamazsın...", "EVET DE!"
+        ];
+
+        // Aşama 1 "Hayır" Tıklaması
+        noBtn1.addEventListener('click', () => {
+            // Evet butonunu büyüt
+            yesBtn1Scale += 0.5;
+            yesBtn1.style.transform = `scale(${yesBtn1Scale})`;
+            
+            // Hayır butonu yazısını değiştir
+            noBtn1ClickCount = (noBtn1ClickCount + 1) % phrases1.length;
+            noBtn1.innerText = phrases1[noBtn1ClickCount];
+
+            // Hayır butonunu rastgele bir yere taşı (ekran dışına çıkmasın)
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = noBtn1.getBoundingClientRect();
+
+            const maxX = containerRect.width - btnRect.width - 40; // Sağdan soldan boşluk
+            const maxY = containerRect.height - btnRect.height - 40;
+
+            let newX = Math.random() * maxX;
+            let newY = Math.random() * maxY;
+
+            // Butonun container dışına çıkmasını engelle (basitçe)
+            if (newX < 20) newX = 20;
+            if (newY < 20) newY = 20;
+
+            // Not: Orijinal projede 'absolute' pozisyonlama vardı, 
+            // burada 'relative' ile basit bir yer değiştirme yapıyoruz.
+            // Daha güçlü bir kaçış için CSS'i 'absolute' yapmak gerekir.
+            // Şimdilik bu daha stabil çalışır:
+            noBtn1.style.position = 'relative'; // Pozisyonu değiştirilebilir yap
+            noBtn1.style.top = (Math.random() * 20 - 10) + 'px'; // Hafifçe salla
+            noBtn1.style.left = (Math.random() * 20 - 10) + 'px';
+        });
+
+        // Aşama 1 "Evet" Tıklaması
+        yesBtn1.addEventListener('click', () => {
+            document.getElementById('stage1').style.display = 'none'; // 1. aşamayı gizle
+            document.getElementById('stage2').style.display = 'block'; // 2. aşamayı göster
+        });
+
+
+        // --- AŞAMA 2 KONTROLLERİ ---
+
+        const yesBtn2 = document.getElementById('yesBtn2');
+        const noBtn2 = document.getElementById('noBtn2');
+        let yesBtn2Scale = 1;
+        let noBtn2ClickCount = 0;
+
+        // Aşama 2'nin "Hayır" butonuna basınca çıkan yazılar
+        const phrases2 = [
+            "Hayır", "Hadi amaa!", "Unutkan ama tatlıyım?", "Tekrar düşün!",
+            "Bensiz sıkılırsın", "Emin misin??", "Lütfeeen!",
+            "EVET DEEVETDEEVETDE"
+        ];
+
+        // Aşama 2 "Hayır" Tıklaması
+        noBtn2.addEventListener('click', () => {
+            // Evet butonunu büyüt
+            yesBtn2Scale += 0.5;
+            yesBtn2.style.transform = `scale(${yesBtn2Scale})`;
+            
+            // Hayır butonu yazısını değiştir
+            noBtn2ClickCount = (noBtn2ClickCount + 1) % phrases2.length;
+            noBtn2.innerText = phrases2[noBtn2ClickCount];
+            
+            // Hayır butonunu salla (Aşama 1 ile aynı mantık)
+            noBtn2.style.position = 'relative';
+            noBtn2.style.top = (Math.random() * 20 - 10) + 'px';
+            noBtn2.style.left = (Math.random() * 20 - 10) + 'px';
+        });
+
+        // Aşama 2 "Evet" Tıklaması
+        yesBtn2.addEventListener('click', () => {
+            document.getElementById('stage2').style.display = 'none'; // 2. aşamayı gizle
+            document.getElementById('stage3').style.display = 'block'; // 3. aşamayı (Final) göster
+        });
+
+    </script>
+
 </body>
 </html>
